@@ -3,16 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>invisibility Cloak</title>
+    <title>Invisibility Cloak · Cyberlink</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>invisibility Cloak</h1>
-        <input type="text" id="urlInput" placeholder="Enter URL">
-        <button onclick="browse()">Browse</button>
-        <iframe id="proxyFrame"></iframe>
+    <div class="background-grid"></div>
+    <div class="background-glow"></div>
+    <header class="nav">
+        <div class="brand">
+            <span class="brand-mark">IC</span>
+            <div class="brand-text">
+                <div class="brand-title">Invisibility Cloak</div>
+                <div class="brand-sub">Local proxy · History cloaked</div>
+            </div>
+        </div>
+        <div class="nav-status">
+            <span class="status-dot online"></span>
+            <span>Proxy ready</span>
+        </div>
+        <div class="nav-actions">
+            <button class="ghost" id="fullscreenToggle" aria-label="Toggle full screen">Full Screen</button>
+        </div>
+    </header>
+
+    <main class="shell">
+        <section class="panel controls">
+            <div class="panel-head">
+                <div class="eyebrow">Target</div>
+                <div class="badge">Cloaked Session</div>
+            </div>
+            <label class="input-label" for="urlInput">Destination URL</label>
+            <div class="input-row">
+                <input id="urlInput" type="text" placeholder="https://neon-net.example" autocomplete="off" spellcheck="false">
+                <button id="browseBtn" class="primary">Inject</button>
+            </div>
+            <div class="meta-row">
+                <div class="meta-item">
+                    <span class="eyebrow">Current Route</span>
+                    <span id="currentUrl" class="mono muted">—</span>
+                </div>
+                <div class="meta-item right">
+                    <span class="eyebrow">History Mask</span>
+                    <span class="pill">Active</span>
+                </div>
+            </div>
+            <div class="quick-dials">
+                <button class="chip" data-url="https://news.ycombinator.com">Hacker News</button>
+                <button class="chip" data-url="https://example.com">Example</button>
+                <button class="chip" data-url="https://wikipedia.org">Wikipedia</button>
+                <button class="chip" data-url="https://developer.mozilla.org">MDN</button>
+            </div>
+        </section>
+
+        <section class="panel viewport" id="viewportPanel">
+            <div class="panel-head">
+                <div>
+                    <div class="eyebrow">Proxy Window</div>
+                    <div class="panel-title">Neon-link session</div>
+                </div>
+                <div class="panel-actions">
+                    <button class="ghost small" id="refreshBtn">Refresh</button>
+                    <button class="ghost small" id="collapseBtn">Collapse</button>
+                </div>
+            </div>
+            <div class="frame-wrapper">
+                <iframe id="proxyFrame" title="Cloaked proxy"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <div class="auth-layer" id="authLayer">
+        <div class="auth-card">
+            <div class="auth-glow"></div>
+            <div class="auth-body">
+                <div class="eyebrow">Secure Access</div>
+                <h1>Unlock the cloak</h1>
+                <p class="muted">Local-only account. Minimum 20 characters. Stored hashed on this device.</p>
+
+                <div id="setPasswordSection" class="auth-section hidden">
+                    <label class="input-label" for="newPassword">Create passphrase</label>
+                    <input id="newPassword" type="password" minlength="20" autocomplete="new-password" placeholder="20+ characters" />
+                    <button id="setPasswordBtn" class="primary wide">Set password</button>
+                </div>
+
+                <div id="loginSection" class="auth-section hidden">
+                    <label class="input-label" for="passwordInput">Enter passphrase</label>
+                    <input id="passwordInput" type="password" minlength="20" autocomplete="current-password" placeholder="••••••••••••••••••••" />
+                    <button id="loginBtn" class="primary wide">Unlock</button>
+                </div>
+
+                <div class="auth-feedback" id="authFeedback"></div>
+            </div>
+        </div>
     </div>
+
     <script src="proxyServer.js"></script>
 </body>
 </html>
